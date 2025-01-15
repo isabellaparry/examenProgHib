@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PublicacionesPage } from './pages/publicaciones/publicaciones.page';
+import { CrearPublicacionPage } from './pages/crear-publicacion/crear-publicacion.page';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: 'publicaciones', pathMatch: 'full' },
+  { path: 'publicaciones', component: PublicacionesPage },
+  { path: 'crear-publicacion', component: CrearPublicacionPage },
 ];
 
 @NgModule({

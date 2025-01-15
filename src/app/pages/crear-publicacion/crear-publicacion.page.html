@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="publicacionForm">
+    <!-- Campo de título -->
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input formControlName="titulo"></ion-input>
+    </ion-item>
+    <ion-text *ngIf="publicacionForm.get('titulo')?.invalid && publicacionForm.get('titulo')?.touched" color="danger">
+      Título mínimo de 5 caracteres.
+    </ion-text>
+
+    <!-- Campo de descripción -->
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-text *ngIf="publicacionForm.get('descripcion')?.invalid && publicacionForm.get('descripcion')?.touched" color="danger">
+      Descripción mínima de 20 caracteres.
+    </ion-text>
+
+    <!-- Botón para capturar imagen -->
+    <ion-item>
+      <ion-button expand="full" (click)="capturarFoto()">
+        Capturar Foto
+      </ion-button>
+    </ion-item>
+    <ion-img *ngIf="foto" [src]="foto"></ion-img>
+
+    <!-- Botón para guardar publicación -->
+    <ion-button
+    expand="full"
+    [disabled]="publicacionForm.invalid"
+    (click)="guardarPublicacion()">
+    Guardar
+  </ion-button>
+  
+  </form>
+</ion-content>

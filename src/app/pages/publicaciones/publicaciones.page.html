@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- Lista de publicaciones -->
+    <ion-item *ngFor="let publicacion of publicaciones$ | async">
+      <ion-thumbnail slot="start">
+        <img [src]="publicacion.foto || 'assets/default-image.jpg'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ publicacion.titulo }}</h2>
+        <p>{{ publicacion.fecha | date: 'medium' }}</p>
+        <p>{{ publicacion.descripcion }}</p>
+      </ion-label>
+      <ion-button color="danger" (click)="confirmarEliminacion(publicacion.id)">
+        Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/crear-publicacion">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
